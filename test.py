@@ -10,7 +10,7 @@ import random
 def testAesCtr():
     key = b'\x2b\x7e\x15\x16\x28\xae\xd2\xa6\xab\xf7\x15\x88\x09\xcf\x4f\x3c\x2b\x7e\x15\x16\x28\xae\xd2\xa6\xab\xf7\x15\x88\x09\xcf\x4f\x3c'
     iv =  b'\x00' * 32
-    ctr = Counter.new(128,initial_value=0)
+    ctr = Counter.new(128,initial_value=1)
     aes = AES.new(key, AES.MODE_CTR, counter=ctr)
     data = b'\x05' * 127
 
