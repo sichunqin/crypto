@@ -6,6 +6,7 @@ import random
     >>> ctr = Counter.new(128)
     >>> cipher = AES.new(b'\x00'*16, AES.MODE_CTR, counter=ctr)
     >>> ct = cipher.encrypt(pt)
+    Both python and c AES CTR implementation doesn't use nonce, and only use counter which would be incremented for each AES block.
 """
 def testAesCtr():
     key = b'\x2b\x7e\x15\x16\x28\xae\xd2\xa6\xab\xf7\x15\x88\x09\xcf\x4f\x3c\x2b\x7e\x15\x16\x28\xae\xd2\xa6\xab\xf7\x15\x88\x09\xcf\x4f\x3c'
