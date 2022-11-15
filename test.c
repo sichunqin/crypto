@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "src/aes.h"
-
+//test purpose
 void printCharInHexadecimal(const unsigned char* str, int len) {
   for (int i = 0; i < len; ++ i) {
 
@@ -130,7 +130,7 @@ void test_aes256_ctr(){
     /*
     mode=aes-128
     key=2b7e151628aed2a6abf7158809cf4f3c
-    iv= 0, only 16 least byets work, will be used as counter
+    iv= 0, only first 16 bytes work, will be used as counter, the remaing won't work
     plain=6bc1bee22e409f96e93d7e117393172a
     cipher=7649abac8119b246cee98e9b12e9197d
     w needs to be 80 byets length
