@@ -64,6 +64,7 @@ void test1(){
 
     aes_key_setup(key,w,128);
 
+    printCharInHexadecimal(plain,128);
     aes_encrypt_cbc(plain,
                     16,
                     cipher,
@@ -71,7 +72,7 @@ void test1(){
                     128,
                     iv);
 
-    printCharInHexadecimal(cipher,16);
+    printCharInHexadecimal(cipher,128);
 
     aes_encrypt_cbc(plain,
                     16,
@@ -79,11 +80,53 @@ void test1(){
                     w,
                     128,
                     iv);
-    printCharInHexadecimal(plain,16);
+    printCharInHexadecimal(plain,128);
+
+}
+
+void test_aes256(){
+    /*
+    mode=aes-128
+    key=2b7e151628aed2a6abf7158809cf4f3c
+    iv=000102030405060708090A0B0C0D0E0F
+    plain=6bc1bee22e409f96e93d7e117393172a
+    cipher=7649abac8119b246cee98e9b12e9197d
+    w needs to be 80 byets length
+
+    aes_encrypt_cbc =  aes_decrypt_cbc
+    */
+    const BYTE key[32] = {0x2b,0x7e,0x15,0x16,0x28,0xae,0xd2,0xa6,0xab,0xf7,0x15,0x88,0x09,0xcf,0x4f,0x3c,0x2b,0x7e,0x15,0x16,0x28,0xae,0xd2,0xa6,0xab,0xf7,0x15,0x88,0x09,0xcf,0x4f,0x3c};
+    //BYTE plain[32] =   {0x6b,0xc1,0xbe,0xe2,0x2e,0x40,0x9f,0x96,0xe9,0x3d,0x7e,0x11,0x73,0x93,0x17,0x2a,0x6b,0xc1,0xbe,0xe2,0x2e,0x40,0x9f,0x96,0xe9,0x3d,0x7e,0x11,0x73,0x93,0x17,0x2a};
+    BYTE plain[128] =   {[0 ... 127] = 5};
+    //BYTE iv[32] = {0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A,0x0B,0x0C,0x0D,0x0E,0x0F, 0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A,0x0B,0x0C,0x0D,0x0E,0x0F};
+    BYTE iv[32] = {2};
+    BYTE cipher[128];
+    WORD w[80];
+
+    aes_key_setup(key,w,256);
+
+    printCharInHexadecimal(plain,128);
+    aes_encrypt_cbc(plain,
+                    128,
+                    cipher,
+                    w,
+                    256,
+                    iv);
+
+    printCharInHexadecimal(cipher,128);
+
+    aes_encrypt_cbc(cipher,
+                    128,
+                    cipher,
+                    w,
+                    256,
+                    iv);
+
+    printCharInHexadecimal(plain,128);
 
 }
 
 int main() {
-    test2();
+    test_aes256();
 }
 
